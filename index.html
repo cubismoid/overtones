@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>overtones</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" role="main">
+        <div class="image-container">
+            <img src="image-top.jpg" alt="background image" class="background-image">
+            <div class="reveal-container">
+                <img src="new image.jpg" alt="overlay image" class="top-image">
+            </div>
+            <div class="mask" role="presentation" aria-hidden="true"></div>
+        </div>
+        <div class="text-input-container" style="display: none;">
+            <input type="text" id="wordInput" placeholder="what do you see?" aria-label="word input">
+            <button id="submitWord">submit</button>
+        </div>
+        <button id="finishButton" class="finish-button">finish</button>
+        <div id="wordDisplay"></div>
+    </div>
+    <audio id="clickSound" src="click-sound.mp3" aria-hidden="true"></audio>
+    <script src="script.js"></script>
+</body>
+</html> 

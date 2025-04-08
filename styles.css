@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    cursor: url('custom-cursor.png'), auto;
+    overflow: hidden;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.reveal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.top-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+    transition: clip-path 0.1s ease-out;
+}
+
+.mask {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: transparent;
+    border: 2px solid #2600ff;
+    pointer-events: none;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.mask.active {
+    display: block;
+}
+
+.revealed-area {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: transparent;
+    pointer-events: none;
+    z-index: 2.5;
+}
+
+.mask::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+.text-input-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    display: flex;
+    gap: 10px;
+    background: none;
+    padding: 0;
+    box-shadow: none;
+    pointer-events: none;
+}
+
+#wordInput {
+    padding: 8px 0;
+    border: none;
+    border-bottom: 2px solid #ffffff;
+    background: transparent;
+    font-size: 16px;
+    min-width: 200px;
+    color: #2600ff;
+    outline: none;
+    font-family: 'IBM Plex Mono', monospace;
+    pointer-events: auto;
+}
+
+#wordInput::placeholder {
+    color: rgba(38, 0, 255, 0.7);
+}
+
+#submitWord {
+    padding: 8px 16px;
+    background-color: #ffffff;
+    color: #2600ff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    pointer-events: auto;
+}
+
+#submitWord:hover {
+    background-color: #f0f0f0;
+}
+
+.finish-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #2600ff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 10;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.finish-button:hover {
+    background-color: #f0f0f0;
+}
+
+#wordDisplay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.word {
+    position: absolute;
+    color: white;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transform: rotate(var(--rotation));
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+    .mask {
+        border: 2px solid CanvasText;
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .top-image {
+        transition: none;
+    }
+} 
